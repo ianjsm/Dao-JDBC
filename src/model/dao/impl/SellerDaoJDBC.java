@@ -59,7 +59,7 @@ public class SellerDaoJDBC implements SellerDao {
 			ps.setInt(5, seller.getDepartment().getId());
 			ps.setInt(6, seller.getId());
 			ps.executeUpdate();
-			
+
 		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
 		} finally {
@@ -73,16 +73,14 @@ public class SellerDaoJDBC implements SellerDao {
 		try {
 			ps = conn.prepareStatement("DELETE FROM seller WHERE Id = ?");
 			ps.setInt(1, id);
-			
+
 			int rowsAffected = ps.executeUpdate();
-			if(rowsAffected > 0) {
+			if (rowsAffected > 0) {
 				System.out.println("DELETE WORKED");
 			}
-		}
-		catch(SQLException e) {
+		} catch (SQLException e) {
 			throw new DbException(e.getMessage());
-		}
-		finally {
+		} finally {
 			DB.closeStatement(ps);
 		}
 	}
